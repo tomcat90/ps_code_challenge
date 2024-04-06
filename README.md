@@ -14,6 +14,7 @@
 
 ## Alternative build run
 - Clone repo
+- Run yarn
 - Run yarn test ( This will build the repo and run the process against the included address and driver file)
 
 ## Some notes
