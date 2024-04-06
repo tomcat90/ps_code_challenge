@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "lib": ["es2020"],
+    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "commonjs" /* Specify what module code is generated. */,
+    "declaration": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "types": ["node"],
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "typings/browser.d.ts",
+    "typings/browser",
+    "node_modules",
+    "**/*.tests.ts"
+  ]
+}

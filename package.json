@@ -1,0 +1,22 @@
+{
+  "name": "ps_code_challenge",
+  "version": "1.0.0",
+  "description": "Platform Science Code Challenge",
+  "main": "index.js",
+  "repository": "https://github.com/tomcat90/ps_code_challenge.git",
+  "author": "Thomas <tw.tingey@gmail.com>",
+  "license": "none",
+  "private": true,
+  "scripts": {
+    "process": "node dist/index.js",
+    "test": "yarn build && yarn process StreetAddresses.txt DriverNames.txt",
+    "watch": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js --watch",
+    "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.4",
+    "esbuild": "^0.20.2",
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {}
+}
