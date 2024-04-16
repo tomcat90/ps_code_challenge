@@ -20,8 +20,21 @@ export const processDrivers = (drivers: string): Array<Driver> => {
       length: driver.length,
       vowels: vowelCount(driver),
       consonants: consonantCount(driver),
-      factors: getFactors(driver.length),
-      selectedAddress: null,
+      factors: getFactors(driver.length)
+    } as Driver;
+  });
+}
+
+export const deepCopy = (drivers: Array<Driver>): Array<Driver> => {
+  return drivers.map((driver) => {
+    return {
+      name: driver.name,
+      length: driver.length,
+      vowels: driver.vowels,
+      consonants: driver.consonants,
+      selectedAddress: driver.selectedAddress,
+      selectedAddressScore: driver.selectedAddressScore,
+      factors: driver.factors.slice()
     }
   });
 }

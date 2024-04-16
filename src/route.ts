@@ -25,7 +25,8 @@ export const calculateScore = (driver: Driver, address: Address): number => {
   return score;
 }
 
-export const calculateScores = (drivers: Array<Driver>, addresses: Array<Address>) => {
+export const calculateScores = (drivers: Array<Driver>, addresses: Array<Address>): number => {
+  let totalScore = 0;
   addresses.forEach((address) => {
     let bestScore = 0;
     let bestIndex = 0;
@@ -43,7 +44,10 @@ export const calculateScores = (drivers: Array<Driver>, addresses: Array<Address
     }
     drivers[bestIndex].selectedAddress = address;
     drivers[bestIndex].selectedAddressScore = bestScore;
+    totalScore += bestScore;
   });
+
+  return totalScore;
 }
 
 /**

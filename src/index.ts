@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { resolvePath } from 'src/util';
-import { processDrivers } from 'src/driver';
-import { processAddresses } from 'src/address';
+import { processDrivers, deepCopy } from 'src/driver';
+import { processAddresses, generateAddressPermutations } from 'src/address';
 import { calculateScores } from 'src/route';
 
 // load the files
@@ -25,14 +25,26 @@ const drivers = processDrivers(driversStr);
 
 const addresses = processAddresses(addressesStr);
 
-// Calculate the scores
-calculateScores(drivers, addresses);
+// Generates an array of all possible permutations of the addresses
+const addressPerm = generateAddressPermutations(addresses);
 
-const totalScore = drivers.reduce((acc, driver) => acc + driver.selectedAddressScore, 0);
+let bestDrivers = [];
+let bestScore = 0;
 
+// Find the max best score across all address permutations
+for (let addressSet of addressPerm) {
+	const driversCopy = deepCopy(drivers);
+	const score = calculateScores(driversCopy, addressSet);
+	if ( score > bestScore ) {
+		bestScore = score;
+		bestDrivers = driversCopy;
+	}
+}
+
+// Format the results
 const finalResults = {
-	totalScore,
-	drivers: drivers.map(driver => {
+	totalScore: bestScore,
+	drivers: bestDrivers.map(driver => {
 		return {
 			name: driver.name,
 			address: driver.selectedAddress.address,
